@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue App</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+</head>
+
+<body>
+  <div id="app">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    count:{{count}}
+
+    <button @click="increment">Click</button>
+  </div>
+  <script>
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      },
+      methods: {
+        increment() {
+          this.count++
+        }
+      },
+      updated() {
+        console.log('this.count', this.count)
+
+      },
+      created() {
+        // this.alertTime("create")
+        console.log(this.$el)
+      },
+      // mounted() {
+      //   this.alertTime("mount")
+      // }
+
+    })
+  </script>
+</body>
+
+</html>
