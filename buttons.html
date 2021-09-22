@@ -1,36 +1,32 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Vue App</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    />
+  </head>
 
-<head>
-  <title>Vue App</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-</head>
-
-<body>
-
-  <div id="app">
-    <button @click="reveal">Reveal the Secret Nubmer</button>
-  </div>
-  <script>
-
-    var app = new Vue({
-      el: '#app',
-      data: {
-        secretNumber: Math.floor(Math.random() * 100) + 1
-      },
-      // methods not method
-      methods: {
-        reveal() {
-          console.log('why?')
-          alert(`Here's the secret number: ${this.secretNumber}`)
-        }
-      }
-    })
-  </script>
-
-
-</body>
-
-
+  <body>
+    <div id="app">
+      <button @click="reveal">Reveal the Secret Nubmer</button>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            secretNumber: Math.floor(Math.random() * 100) + 1,
+          };
+        },
+        methods: {
+          reveal() {
+            alert(`Here's the secret number: ${this.secretNumber}`);
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>

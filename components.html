@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Vue App</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+    />
+    <style>
+      #app {
+        margin: 10% 30%;
+      }
 
-<head>
-  <title>Vue App</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-  <style>
-    #app {
-      margin: 10% 30%;
-    }
+      .button-xsmall {
+        font-size: 70%;
+        padding: 5px;
+      }
+    </style>
+  </head>
 
-    .button-xsmall {
-      font-size: 70%;
-      padding: 5px
-    }
-  </style>
-</head>
+  <body>
+    <div id="app">
+      <counter v-bind:add-num="5" :minus-num="3" />
+    </div>
 
-<body>
-  <div id="app">
-    <counter v-bind:add-num="5" :minus-num="3" />
-  </div>
-
-  <script>
-    var counter = Vue.component('counter', {
-      template:
-        `
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({});
+      app.component("counter", {
+        template: `
       <div>
-      <div> Count: {{this.count}}</div>
-      <button class="button-xsmall pure-button" @click="increment">Plus by {{this.addNum}}</button>
-      <button class="button-xsmall pure-button" @click="decrement">Minus by {{this.minusNum}}</button>
+        <div> Count: {{this.count}}</div>
+        <button class="button-xsmall pure-button" @click="increment">Plus by {{this.addNum}}</button>
+        <button class="button-xsmall pure-button" @click="decrement">Minus by {{this.minusNum}}</button>
       </div>
       `,
-      props: {
-        addNum: {
-          type: Number,
-          default: 1
+        props: {
+          addNum: {
+            type: Number,
+            default: 1,
+          },
+          minusNum: {
+            type: Number,
+            default: 100,
+          },
         },
-        minusNum: {
-          type: Number,
-          default: 100
-        }
-      },
-      data() {
-        return {
-          count: 0
-        }
-      },
-      methods: {
-        increment() {
-          this.count += this.addNum
+        data() {
+          return {
+            count: 0,
+          };
         },
-        decrement() {
-          if (this.count > 0 && this.count - this.minusNum > 0) this.count -= this.minusNum
-        }
-      }
-    })
-
-    // root, representive or parent here.
-    var app = new Vue({
-      el: '#app',
-
-      components: {
-        counter
-      }
-    })
-  </script>
-</body>
-
+        methods: {
+          increment() {
+            this.count += this.addNum;
+          },
+          decrement() {
+            if (this.count > 0 && this.count - this.minusNum > 0)
+              this.count -= this.minusNum;
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>

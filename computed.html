@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Vue App</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    />
+  </head>
 
-<head>
-  <title>Vue App</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <body>
+    <div id="app">
+      <div>Change input</div>
+      <input v-model="textInside" placeholder="input some words" />
+      <div>LowerCased: {{lowerText}}</div>
+    </div>
 
-</head>
-
-<body>
-  <div id="app">
-    <div>Change input</div>
-    <input v-model="textInside" placeholder="input some words">
-    <div>LowerCased: {{lowerText}}</div>
-  </div>
-  </div>
-
-  <script>
-
-    var app = new Vue({
-      el: '#app',
-      data: {
-        textInside: 'hl'
-      },
-      computed: {
-        lowerText() {
-          return this.textInside.toLowerCase()
-        }
-      }
-    })
-  </script>
-</body>
-
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            textInside: "hl",
+          };
+        },
+        computed: {
+          lowerText() {
+            return this.textInside.toLowerCase();
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>

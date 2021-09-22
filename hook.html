@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Vue App</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+    />
+    <style>
+      /* prevent naked look */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
 
-<head>
-  <title>Vue App</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-</head>
+  <body>
+    <div id="app" v-cloak>
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+      count:{{count}}
 
-<body>
-  <div id="app">
-    <input type="checkbox" id="checkbox" v-model="checked">
-    <label for="checkbox">{{ checked }}</label>
-    count:{{count}}
+      <button @click="increment">Click</button>
+    </div>
 
-    <button @click="increment">Click</button>
-  </div>
-  <script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.count++;
+          },
+        },
+        updated() {
+          console.log("this.count", this.count);
+        },
+        created() {
+          // this.alertTime("create")
+          console.log(this.$el);
+        },
+        // mounted() {
+        //   this.alertTime("mount")
+        // }
+      });
 
-    var app = new Vue({
-      el: '#app',
-      data: {
-        count: 0
-      },
-      methods: {
-        increment() {
-          this.count++
-        }
-      },
-      updated() {
-        console.log('this.count', this.count)
-
-      },
-      created() {
-        // this.alertTime("create")
-        console.log(this.$el)
-      },
-      // mounted() {
-      //   this.alertTime("mount")
-      // }
-
-    })
-  </script>
-</body>
-
+      app.mount("#app");
+    </script>
+  </body>
 </html>
